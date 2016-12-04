@@ -4,6 +4,7 @@ Best put in a cronjob.
 """
 import colorama
 from bs4 import BeautifulSoup
+import re
 import getpass
 import requests
 import os
@@ -79,6 +80,11 @@ def print_renewal_summary(response):
                 "[" + item.select(".patFuncStatus em div")[0].text.strip() + "] " +
                 colorama.Style.RESET_ALL,
                 end="")
+        else:
+            # it worked
+            el = item.select(".patFuncStatus em")[0]
+            regexp = re.compile(r"due ([0-9]{2}-[0-9]{2}-[0-9]{2})")
+            print("[" + regexp.match(el.text).group(1) + "] ")
         print(
             "{} by {}".format(
                 colorama.Fore.BLUE + split[0].strip() + colorama.Style.RESET_ALL,
