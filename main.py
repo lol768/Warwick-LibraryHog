@@ -84,7 +84,7 @@ def print_renewal_summary(response):
             # it worked
             el = item.select(".patFuncStatus em")[0]
             regexp = re.compile(r"due ([0-9]{2}-[0-9]{2}-[0-9]{2})")
-            print("[" + regexp.match(el.text).group(1) + "] ")
+            print(colorama.Fore.GREEN + "[" + regexp.search(el.text).group(1) + "] " + colorama.Style.RESET_ALL, end="")
         print(
             "{} by {}".format(
                 colorama.Fore.BLUE + split[0].strip() + colorama.Style.RESET_ALL,
