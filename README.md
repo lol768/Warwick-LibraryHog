@@ -23,6 +23,15 @@ largest amount of the standard loan length
 * Renewing every day like this will continuously move the due date one day in the future, so at all points in time
 there will be two weeks to read the book
 
+A note on holds
+---------------
+
+When a library user requests a hold on a book, the hold is **sent to everyone** who has the title in question out on loan. This stops everyone from renewing the title until one of the copies is returned. As a result, the "loser" is whoever has the closest due date because they have no choice but to return the book by this date or face a fine. Once a hold is fulfilled it becomes possible to renew the book again.
+
+This means that if you use this script and there are multiple copies of a book, you should *never* need to return the book (assuming less holds than book copies are requested). You'll still receive emails about holds as normal, but you can just ignore them.
+
+NB: if all of the other users who are also sent the hold notificaton are using a script like this, everyone will have the same due date. This seems like an unlikely scenario, but if you're not careful you'll end up with a fine - if the renews continuously fail up until the due date you'll need to return the book. The best approach to take when this happens is to immediately request a hold as soon as the title is returned.
+
 Using the script
 ----------------
 
