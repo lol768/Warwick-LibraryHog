@@ -37,7 +37,7 @@ def get_defaults(session):
     Grabs the default inputs as a dictionary.
     """
     response = session.get(BASE_URL)
-    bs = BeautifulSoup(response.content)
+    bs = BeautifulSoup(response.content, "lxml")
     inputs = {}
     for item in bs.select(INPUT_SELECTOR):
         inputs[item.get('name')] = item.get('value')
@@ -50,7 +50,7 @@ def get_account_url(session):
     that are checked out.
     """
     response = session.get(ACCOUNT_URL)
-    bs = BeautifulSoup(response.content)
+    bs = BeautifulSoup(response.content, "lxml")
     return bs.select("iframe#accountContentIframe")[0].get("src")
 
 
@@ -69,8 +69,8 @@ def print_renewal_summary(response):
     """
     Prints a summary of the renewals.
     """
-    bs = BeautifulSoup(response.text)
-    if len(bs.select("#renewfailmsg")) > 0:
+    bs = BeautifulSoup(response.text, "lxml")
+    if len(bs.select(".patFuncStatus em div")) > 0:
         print(colorama.Fore.RED + "✗" + " Not all renews were successful!" + colorama.Style.RESET_ALL)
     for item in bs.select(".patFuncEntry"):
         split = item.select(".patFuncTitleMain")[0].text.split("/")
